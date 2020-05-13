@@ -30,19 +30,23 @@ func main()  {
 }
 
 func smallerNumbersThanCurrent(nums []int) []int {
-	//使用桶排序的思想，来维持数组内的元素，值和索引之间的关联关系
+	//维持一个桶，使用这个桶来维持nums数组中每个元素的索引位置
 	var bucket [101]int
-	res := make([]int, len(nums))
-	for _, value := range nums {
-		bucket[value]++
+	var length = len(nums)
+
+	//让nums里面的元素，对应到桶中的位置元素+1
+	for i := 0; i < length; i++{
+		bucket[nums[i]]++ //使用++而不是 =1 的原因是在nums数组中，可能存在重复值的情况
 	}
-	for i := 1; i < 101; i++ {
-		bucket[i] += bucket[i-1]
+
+	for i := 1; i < len(bucket); i++{
+		bucket[i] += bucket[i - 1]
 	}
-	for i, v := range nums {
-		if v != 0 {
-			res[i] = bucket[nums[i]-1]
-		}
+
+	var result = make([]int, length)
+	for i := 0; i < len(result); i++{
+		result[i] = bucket[nums[i] - 1]
 	}
-	return res
+
+	return result
 }
