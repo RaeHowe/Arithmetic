@@ -36,21 +36,23 @@ nums       index     target
 */
 
 func createTargetArray(nums []int, index []int) []int {
-	var target = make([]int, len(nums))
-	var count = 0
+	var length = len(index)
+	var target = make([]int, length)
+	var countSort = 0
 
-	for i := 0; i < len(target); i++{
-		var tmpIndex = index[i]
-		if tmpIndex == i{
+	for i := 0; i < length; i++{
+		if index[i] == i{
 			target[i] = nums[i]
 		}else {
-			for j := count; j > tmpIndex; j--{
+			for j := countSort; j > index[i]; j--{ // 3 3>2
+				//判断移动数字的位数
 				target[j] = target[j - 1]
 			}
-			target[tmpIndex] = nums[i]
+
+			target[index[i]] = nums[i]
 		}
 
-		count++
+		countSort++
 	}
 
 	return target
