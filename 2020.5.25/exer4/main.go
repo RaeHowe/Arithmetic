@@ -8,6 +8,11 @@ func main()  {
 	fmt.Println(result)
 }
 
+/*
+	题目要求
+
+*/
+
 func transpose(A [][]int) [][]int {
 	var c = len(A) //2
 	var r = len(A[0]) //3
