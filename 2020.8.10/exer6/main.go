@@ -63,6 +63,5 @@ func reformat(s string) string {
 		}
 	}
 
-
 	return result
 }
